@@ -1,0 +1,55 @@
+{
+  "project": "CYCLONE-X",
+  "model": "Model 2 \u2014 direct multi-horizon track + intensity forecaster",
+  "horizons_hours": [
+    6,
+    12,
+    24,
+    48
+  ],
+  "target": "future latitude, longitude and WMO wind",
+  "leakage_control": "whole-cyclone SID split; only T and earlier features are used",
+  "splits": {
+    "train_storms": 282,
+    "validation_storms": 71,
+    "test_storms": 89
+  },
+  "metrics": {
+    "6": {
+      "test_samples": 1040,
+      "track_mae_km": 113.15363794883886,
+      "track_median_km": 90.36180589166295,
+      "track_rmse_km": 152.26065834786925,
+      "intensity_mae": 46.21154155315285,
+      "intensity_rmse": 51.54229767236562,
+      "validation_track_p90_km": 172.07171097609728
+    },
+    "12": {
+      "test_samples": 854,
+      "track_mae_km": 206.0713170863638,
+      "track_median_km": 173.0462341171384,
+      "track_rmse_km": 260.8442776660203,
+      "intensity_mae": 47.66741598002877,
+      "intensity_rmse": 53.84365877873736,
+      "validation_track_p90_km": 306.9457290719954
+    },
+    "24": {
+      "test_samples": 547,
+      "track_mae_km": 349.51290051493936,
+      "track_median_km": 320.18976279476425,
+      "track_rmse_km": 411.39466745493974,
+      "intensity_mae": 48.10393845694655,
+      "intensity_rmse": 55.12376464702972,
+      "validation_track_p90_km": 506.41941298935177
+    },
+    "48": {
+      "test_samples": 243,
+      "track_mae_km": 613.6723497459619,
+      "track_median_km": 596.471630329858,
+      "track_rmse_km": 692.6129015379299,
+      "intensity_mae": 54.48327945202945,
+      "intensity_rmse": 60.25907217781508,
+      "validation_track_p90_km": 735.4376327926216
+    }
+  }
+}

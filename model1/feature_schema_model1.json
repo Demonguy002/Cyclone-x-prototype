@@ -1,0 +1,120 @@
+{
+    "satellite_branch": {
+        "source": "HURSAT-B1",
+        "representation": "64x64 single-channel normalized infrared image",
+        "vision_model": "lightweight CNN",
+        "notes": "Current satellite image is an input observation; target wind is never used to construct the image."
+    },
+    "track_branch": {
+        "source": "IBTrACS",
+        "feature_count": 67,
+        "features": [
+            "LAT",
+            "LON",
+            "DIST2LAND",
+            "WMO_WIND_L1",
+            "WMO_WIND_L2",
+            "WMO_WIND_L3",
+            "WMO_PRES_L1",
+            "WMO_PRES_L2",
+            "WMO_PRES_L3",
+            "STORM_SPEED_L1",
+            "STORM_SPEED_L2",
+            "STORM_SPEED_L3",
+            "STORM_DIR_L1",
+            "STORM_DIR_L2",
+            "STORM_DIR_L3",
+            "LAT_L1",
+            "LAT_L2",
+            "LAT_L3",
+            "LON_L1",
+            "LON_L2",
+            "LON_L3",
+            "DIST2LAND_L1",
+            "DIST2LAND_L2",
+            "DIST2LAND_L3",
+            "WIND_CHANGE_1",
+            "WIND_CHANGE_2",
+            "WIND_ACCELERATION",
+            "PRESSURE_CHANGE_1",
+            "PRESSURE_CHANGE_2",
+            "PRESSURE_ACCELERATION",
+            "SPEED_CHANGE_1",
+            "LAND_CHANGE_1",
+            "WIND_ROLL_MEAN_2",
+            "WIND_ROLL_STD_2",
+            "WIND_ROLL_MEAN_3",
+            "WIND_ROLL_STD_3",
+            "WIND_ROLL_MEAN_4",
+            "WIND_ROLL_STD_4",
+            "PRESSURE_ROLL_MEAN_2",
+            "PRESSURE_ROLL_STD_2",
+            "PRESSURE_ROLL_MEAN_3",
+            "PRESSURE_ROLL_STD_3",
+            "PRESSURE_ROLL_MEAN_4",
+            "PRESSURE_ROLL_STD_4",
+            "SPEED_ROLL_MEAN_2",
+            "SPEED_ROLL_STD_2",
+            "SPEED_ROLL_MEAN_3",
+            "SPEED_ROLL_STD_3",
+            "SPEED_ROLL_MEAN_4",
+            "SPEED_ROLL_STD_4",
+            "LAND_ROLL_MEAN_2",
+            "LAND_ROLL_STD_2",
+            "LAND_ROLL_MEAN_3",
+            "LAND_ROLL_STD_3",
+            "LAND_ROLL_MEAN_4",
+            "LAND_ROLL_STD_4",
+            "LAT_RAD",
+            "LON_RAD",
+            "MONTH_SIN",
+            "MONTH_COS",
+            "HOUR_SIN",
+            "HOUR_COS",
+            "DOY_SIN",
+            "DOY_COS",
+            "STORM_AGE_HOURS",
+            "PREV_MOTION_U",
+            "PREV_MOTION_V"
+        ],
+        "notes": "Current position is allowed; intensity history and trends are strictly lagged."
+    },
+    "environment_branch": {
+        "source": "ERA5",
+        "feature_count": 9,
+        "features": [
+            "U10",
+            "V10",
+            "ERA5_WIND_SPEED",
+            "ERA5_WIND_DIR",
+            "MSLP",
+            "SST",
+            "T2M",
+            "D2M",
+            "TP"
+        ],
+        "missing_source_handling": "validity mask + adaptive source gate"
+    },
+    "fusion": {
+        "type": "adaptive reliability-aware three-source fusion",
+        "sources": [
+            "satellite",
+            "historical_track",
+            "ERA5_environment"
+        ],
+        "gate_inputs": [
+            "satellite_quality",
+            "era5_available",
+            "source_embeddings"
+        ]
+    },
+    "target": {
+        "source": "IBTrACS WMO_WIND",
+        "used_as_input": false,
+        "classes": {
+            "0": "Depression / Weak System",
+            "1": "Cyclonic Storm",
+            "2": "Severe Cyclone"
+        }
+    }
+}

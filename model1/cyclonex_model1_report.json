@@ -1,0 +1,103 @@
+{
+    "project": "CYCLONE-X",
+    "model_name": "CYCLONE-X Final Leakage-Free Adaptive Multi-Source Vision Fusion",
+    "training_period": "2010-2016",
+    "task": "Cyclone stage classification",
+    "data_sources": {
+        "HURSAT_satellite": true,
+        "IBTrACS_track": true,
+        "ERA5_environment": false,
+        "ERA5_coverage_percent": 0.0
+    },
+    "sample_count": 3630,
+    "storm_count": 47,
+    "train_samples": 2236,
+    "validation_samples": 579,
+    "unseen_test_samples": 815,
+    "train_storms": 29,
+    "validation_storms": 8,
+    "unseen_test_storms": 10,
+    "metrics": {
+        "accuracy": 0.8687116564417178,
+        "precision_weighted": 0.8722574982230875,
+        "recall_weighted": 0.8687116564417178,
+        "f1_weighted": 0.870056856877005
+    },
+    "classification_report": {
+        "Depression / Weak System": {
+            "precision": 0.9459459459459459,
+            "recall": 0.9058823529411765,
+            "f1-score": 0.9254807692307693,
+            "support": 425.0
+        },
+        "Cyclonic Storm": {
+            "precision": 0.7665369649805448,
+            "recall": 0.8073770491803278,
+            "f1-score": 0.7864271457085829,
+            "support": 244.0
+        },
+        "Severe Cyclone": {
+            "precision": 0.8344370860927153,
+            "recall": 0.863013698630137,
+            "f1-score": 0.8484848484848485,
+            "support": 146.0
+        },
+        "accuracy": 0.8687116564417178,
+        "macro avg": {
+            "precision": 0.8489733323397353,
+            "recall": 0.8587577002505471,
+            "f1-score": 0.8534642544747335,
+            "support": 815.0
+        },
+        "weighted avg": {
+            "precision": 0.8722574982230875,
+            "recall": 0.8687116564417178,
+            "f1-score": 0.870056856877005,
+            "support": 815.0
+        }
+    },
+    "confusion_matrix": [
+        [
+            385,
+            40,
+            0
+        ],
+        [
+            22,
+            197,
+            25
+        ],
+        [
+            0,
+            20,
+            126
+        ]
+    ],
+    "leakage_control": {
+        "current_WMO_WIND_used_as_feature": false,
+        "current_WMO_PRES_used_as_feature": false,
+        "current_intensity_change_used_as_feature": false,
+        "current_target_derived_feature_used": false,
+        "satellite_archer_intensity_used": false,
+        "storm_wise_test_split": true,
+        "test_storms_seen_during_training": false,
+        "imputers_fit_on_training_only": true,
+        "scalers_fit_on_training_only": true,
+        "past_trends_use_only_T_minus_1_T_minus_2_T_minus_3": true,
+        "era5_environment_is_target_free": true
+    },
+    "architecture": {
+        "satellite": "CNN",
+        "historical_track": "MLP",
+        "ERA5": "MLP",
+        "fusion": "adaptive reliability-aware gated fusion",
+        "output": "3-class softmax"
+    },
+    "leakage_audit": "PASS \u2014 event-wise SID separation and train-only preprocessing checks executed before training.",
+    "limitations": [
+        "This artifact trains current cyclone-stage classification; it does not by itself prove 6\u201348 h track forecasting.",
+        "Forecasting requires a separate temporally supervised model using future track targets.",
+        "ERA5 contribution depends on actual ERA5 coverage in the local dataset.",
+        "HURSAT is historical storm-centric data; live operation requires an official live satellite source."
+    ]
+}

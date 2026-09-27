@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "train_validation_sid_overlap": [],
+  "train_test_sid_overlap": [],
+  "validation_test_sid_overlap": [],
+  "current_WMO_WIND_input": false,
+  "current_WMO_PRES_input": false,
+  "current_intensity_trend_input": false,
+  "ARCHER_intensity_or_pressure_input": false,
+  "preprocessing_fit_on_train_only": true,
+  "test_used_for_training": false
+}

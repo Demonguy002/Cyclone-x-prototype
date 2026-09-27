@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "whole_storm_split": true,
+  "train_validation_overlap": [],
+  "train_test_overlap": [],
+  "validation_test_overlap": [],
+  "future_targets_used_as_features": false,
+  "preprocessing_fit_on_train_only": true
+}

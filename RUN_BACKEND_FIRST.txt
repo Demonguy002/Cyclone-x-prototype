@@ -1,0 +1,15 @@
+CYCLONE-X — BACKEND FIRST
+
+1) cd /d E:\Cyclone-x-prototype
+2) python -m pip install -r backend\requirements.txt
+3) uvicorn backend.main:app --host 127.0.0.1 --port 8000
+
+Test:
+http://127.0.0.1:8000/api/health
+http://127.0.0.1:8000/api/model
+http://127.0.0.1:8000/api/test-sample/0
+
+Only after these work:
+cd /d E:\Cyclone-x-prototype\frontend
+npm install
+npm run dev
